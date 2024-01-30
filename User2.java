@@ -2,34 +2,60 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 
-class User2 {
+    public class User2 {
     private String username;
-    private String email;
+    private String age;
+    private String clssRoom;
+    private String clssNumber;
 
-    public User2(String username, String email) {
+
+    public User2(String username, String age , String clssRoom, String clssNumber ) {
         this.username = username;
-        this.email = email;
+        this.age = age;
+        this.clssRoom = clssRoom;
+        this.clssNumber = clssNumber;
+
     }
 
     public String getUsername() {
         return username;
     }
 
-    public String getEmail() {
-        return email;
+    public String getclssRoom() {
+        return clssRoom;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public String getAge() {
+        return age;
+    }
+
+    public String getClssNumber() {
+        return clssNumber;
+    }
+
+    public void setusername(String username) {
+        this.username = username;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public void setClssRoom(String clssRoom) {
+        this.clssRoom = clssRoom;
+    }
+
+    public void setClssNumber(String clssNumber) {
+        this.clssNumber = clssNumber;
     }
 
     @Override
     public String toString() {
-        return "Username: " + username + ", Email: " + email;
+        return "이름: " + username + ", 학년: " + age + ", 반: " + clssRoom + ", 번호: " + clssNumber ;
     }
 }
 
-public class UserManagementSystem {
+    class UserManagementSystem {
     private static ArrayList<User2> userList = new ArrayList<>();
     private static Scanner scanner = new Scanner(System.in);
 
@@ -37,6 +63,7 @@ public class UserManagementSystem {
         while (true) {
             System.out.println("1. 사용자 등록");
             System.out.println("2. 사용자 조회");
+            System.out.println("2. 사용자 전체 조회");
             System.out.println("3. 사용자 수정");
             System.out.println("4. 사용자 삭제");
             System.out.println("5. 종료");
@@ -50,15 +77,18 @@ public class UserManagementSystem {
                     registerUser();
                     break;
                 case 2:
-                    displayUsers();
+                    displayCheckUsers();
                     break;
                 case 3:
-                    updateUser();
+                    displayUsers();
                     break;
                 case 4:
-                    deleteUser();
+                    updateUser();
                     break;
                 case 5:
+                    deleteUser();
+                    break;
+                case 6:
                     System.out.println("프로그램을 종료합니다.");
                     System.exit(0);
                     break;
@@ -71,10 +101,15 @@ public class UserManagementSystem {
     private static void registerUser() {
         System.out.print("사용자 이름을 입력하세요: ");
         String username = scanner.nextLine();
-        System.out.print("이메일을 입력하세요: ");
-        String email = scanner.nextLine();
+        System.out.print("사용자 학년을 입력하세요: ");
+        String age = scanner.nextLine();
+        System.out.print("사용자 반을 입력하세요: ");
+        String classRoom = scanner.nextLine();
+        System.out.print("사용자 번호를 입력하세요: ");
+        String classNumber = scanner.nextLine();
+        
 
-        User2 newUser = new User2(username, email);
+        User2 newUser = new User2(username, age, classRoom, classNumber);
         userList.add(newUser);
 
         System.out.println("사용자가 등록되었습니다.");
@@ -99,9 +134,22 @@ public class UserManagementSystem {
         while (iterator.hasNext()) {
             User2 user = iterator.next();
             if (user.getUsername().equals(username)) {
-                System.out.print("새로운 이메일을 입력하세요: ");
-                String newEmail = scanner.nextLine();
-                user.setEmail(newEmail);
+                System.out.print("새로운 이름을 입력하세요: ");
+                String newUserName = scanner.nextLine();
+                user.setusername(newUserName);
+
+                System.out.print("새로운 학년을 입력하세요: ");
+                String newAge = scanner.nextLine();
+                user.setAge(newAge);
+
+                System.out.print("새로운 반을 입력하세요: ");
+                String newClssRoom = scanner.nextLine();
+                user.setClssRoom(newClssRoom);
+
+                System.out.print("새로운 번호을 입력하세요: ");
+                String newClssNumber = scanner.nextLine();
+                user.setClssNumber(newClssNumber);
+
                 System.out.println("사용자 정보가 수정되었습니다.");
                 return;
             }
@@ -126,4 +174,26 @@ public class UserManagementSystem {
 
         System.out.println("입력한 이름의 사용자를 찾을 수 없습니다.");
     }
-}
+
+    private static void displayCheckUsers() {
+        System.out.print("조회할 사용자 이름을 입력하세요: ");
+        String username = scanner.nextLine();
+        Iterator<User2> iterator = userList.iterator();
+        User2 user = iterator.next();
+
+            if (user.getUsername().equals(username)) {
+                
+                System.out.println(user);
+
+                return;
+            }
+            else{
+    
+                System.out.println("입력한 이름의 사용자를 찾을 수 없습니다.");
+
+                return;
+            }
+        }
+    }
+
+
