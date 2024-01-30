@@ -63,10 +63,10 @@ import java.util.Scanner;
         while (true) {
             System.out.println("1. 사용자 등록");
             System.out.println("2. 사용자 조회");
-            System.out.println("2. 사용자 전체 조회");
-            System.out.println("3. 사용자 수정");
-            System.out.println("4. 사용자 삭제");
-            System.out.println("5. 종료");
+            System.out.println("3. 사용자 전체 조회");
+            System.out.println("4. 사용자 수정");
+            System.out.println("5. 사용자 삭제");
+            System.out.println("6. 종료");
             System.out.print("원하는 작업을 선택하세요: ");
 
             int choice = scanner.nextInt();
