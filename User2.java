@@ -74,7 +74,8 @@ public class UserManagementSystem {
         System.out.print("이메일을 입력하세요: ");
         String email = scanner.nextLine();
 
-        User2 newUser = new User2(username, email);
+        
+    
         userList.add(newUser);
 
         System.out.println("사용자가 등록되었습니다.");
